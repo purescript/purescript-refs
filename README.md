@@ -18,7 +18,7 @@
     readRef :: forall s r. RefVal s -> Eff (ref :: Ref | r) s
 
     writeRef :: forall s r. RefVal s -> s -> Eff (ref :: Ref | r) {  }
-    
+
 
 ## Module Control.Monad.Eff.Ref.Unsafe
 
