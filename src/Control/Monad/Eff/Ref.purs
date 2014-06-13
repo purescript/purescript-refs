@@ -29,7 +29,7 @@ foreign import modifyRef
   \      return {};\
   \    };\
   \  };\
-  \}" :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) {}
+  \}" :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) Unit
 
 foreign import writeRef 
   "function writeRef(ref) {\
@@ -39,4 +39,4 @@ foreign import writeRef
   \      return {};\
   \    };\
   \  };\
-  \}" :: forall s r. RefVal s -> s -> Eff (ref :: Ref | r) {}
+  \}" :: forall s r. RefVal s -> s -> Eff (ref :: Ref | r) Unit

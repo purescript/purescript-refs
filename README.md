@@ -11,13 +11,13 @@
 
 ### Values
 
-    modifyRef :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) {  }
+    modifyRef :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) Unit
 
     newRef :: forall s r. s -> Eff (ref :: Ref | r) (RefVal s)
 
     readRef :: forall s r. RefVal s -> Eff (ref :: Ref | r) s
 
-    writeRef :: forall s r. RefVal s -> s -> Eff (ref :: Ref | r) {  }
+    writeRef :: forall s r. RefVal s -> s -> Eff (ref :: Ref | r) Unit
 
 
 ## Module Control.Monad.Eff.Ref.Unsafe
