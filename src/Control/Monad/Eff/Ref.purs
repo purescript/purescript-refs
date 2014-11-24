@@ -28,8 +28,8 @@ foreign import modifyRef' """
     return function(f) {
       return function() {
         var t = f(ref.value);
-        ref.value = t.value0;
-        return t.value1;
+        ref.value = t.newState;
+        return t.retVal;
       };
     };
   }
