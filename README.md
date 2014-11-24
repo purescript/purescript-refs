@@ -13,7 +13,7 @@
 
     modifyRef :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) Unit
 
-    modifyRef' :: forall s b r. RefVal s -> (s -> Tuple s b) -> Eff (ref :: Ref | r) b
+    modifyRef' :: forall s b r. RefVal s -> (s -> { retVal :: b, newState :: s }) -> Eff (ref :: Ref | r) b
 
     newRef :: forall s r. s -> Eff (ref :: Ref | r) (RefVal s)
 

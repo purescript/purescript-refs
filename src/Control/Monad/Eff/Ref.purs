@@ -1,7 +1,6 @@
 module Control.Monad.Eff.Ref where
 
 import Control.Monad.Eff
-import Data.Tuple
 
 foreign import data Ref :: !
 
@@ -34,10 +33,10 @@ foreign import modifyRef' """
       };
     };
   }
-""" :: forall s b r. RefVal s -> (s -> Tuple s b) -> Eff (ref :: Ref | r) b
+""" :: forall s b r. RefVal s -> (s -> {newState :: s, retVal :: b}) -> Eff (ref :: Ref | r) b
 
 modifyRef :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) Unit
-modifyRef ref f = modifyRef' ref (\s -> Tuple (f s) unit)
+modifyRef ref f = modifyRef' ref (\s -> {newState: f s, retVal: unit})
 
 foreign import writeRef """
   function writeRef(ref) {
