@@ -13,6 +13,8 @@
 
     modifyRef :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) Unit
 
+    modifyRef' :: forall s b r. RefVal s -> (s -> { retVal :: b, newState :: s }) -> Eff (ref :: Ref | r) b
+
     newRef :: forall s r. s -> Eff (ref :: Ref | r) (RefVal s)
 
     readRef :: forall s r. RefVal s -> Eff (ref :: Ref | r) s
