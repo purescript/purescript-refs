@@ -1,20 +1,18 @@
 {
-  "name": "purescript-refs",
-  "homepage": "https://github.com/purescript/purescript-refs",
-  "description": "Mutable value references",
-  "keywords": [
-    "purescript"
+  "name": "purescript-semirings",
+  "moduleType": [
+    "node"
   ],
-  "license": "MIT",
   "ignore": [
     "**/.*",
-    "bower_components",
     "node_modules",
+    "bower_components",
     "output",
-    "tests",
-    "tmp",
     "bower.json",
-    "Gruntfile.js",
+    "gulpfile.js",
     "package.json"
-  ]
+  ],
+  "dependencies": {
+    "purescript-foldable-traversable": "~0.4.0"
+  }
 }
