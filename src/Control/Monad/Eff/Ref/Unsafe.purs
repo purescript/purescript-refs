@@ -14,4 +14,4 @@ import Control.Monad.Eff.Ref
 foreign import unsafeRunRef 
   "function unsafeRunRef(f) {\
   \  return f;\
-  \}" :: forall eff a. Eff (ref :: Ref | eff) a -> Eff eff a
+  \}" :: forall eff a. Eff (ref :: REF | eff) a -> Eff eff a

@@ -10,27 +10,27 @@ _Note_: The `Control.Monad.ST` provides a _safe_ alternative
 to global mutable variables when mutation is restricted to a
 local scope.
 
-#### `Ref`
+#### `REF`
 
 ``` purescript
-data Ref :: !
+data REF :: !
 ```
 
 The effect associated with the use of global mutable variables.
 
-#### `RefVal`
+#### `Ref`
 
 ``` purescript
-data RefVal :: * -> *
+data Ref :: * -> *
 ```
 
-A value of type `RefVal a` represents a mutable reference
+A value of type `Ref a` represents a mutable reference
 which holds a value of type `a`.
 
 #### `newRef`
 
 ``` purescript
-newRef :: forall s r. s -> Eff (ref :: Ref | r) (RefVal s)
+newRef :: forall s r. s -> Eff (ref :: REF | r) (Ref s)
 ```
 
 Create a new mutable reference containing the specified value.
@@ -38,7 +38,7 @@ Create a new mutable reference containing the specified value.
 #### `readRef`
 
 ``` purescript
-readRef :: forall s r. RefVal s -> Eff (ref :: Ref | r) s
+readRef :: forall s r. Ref s -> Eff (ref :: REF | r) s
 ```
 
 Read the current value of a mutable reference
@@ -46,7 +46,7 @@ Read the current value of a mutable reference
 #### `modifyRef'`
 
 ``` purescript
-modifyRef' :: forall s b r. RefVal s -> (s -> { retVal :: b, newState :: s }) -> Eff (ref :: Ref | r) b
+modifyRef' :: forall s b r. Ref s -> (s -> { value :: b, state :: s }) -> Eff (ref :: REF | r) b
 ```
 
 Update the value of a mutable reference by applying a function
@@ -55,7 +55,7 @@ to the current value.
 #### `modifyRef`
 
 ``` purescript
-modifyRef :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) Unit
+modifyRef :: forall s r. Ref s -> (s -> s) -> Eff (ref :: REF | r) Unit
 ```
 
 Update the value of a mutable reference by applying a function
@@ -64,7 +64,7 @@ to the current value.
 #### `writeRef`
 
 ``` purescript
-writeRef :: forall s r. RefVal s -> s -> Eff (ref :: Ref | r) Unit
+writeRef :: forall s r. Ref s -> s -> Eff (ref :: REF | r) Unit
 ```
 
 Update the value of a mutable reference to the specified value.
@@ -78,7 +78,7 @@ Unsafe functions for working with mutable references.
 #### `unsafeRunRef`
 
 ``` purescript
-unsafeRunRef :: forall eff a. Eff (ref :: Ref | eff) a -> Eff eff a
+unsafeRunRef :: forall eff a. Eff (ref :: REF | eff) a -> Eff eff a
 ```
 
 This handler function unsafely removes the `Ref` effect from an

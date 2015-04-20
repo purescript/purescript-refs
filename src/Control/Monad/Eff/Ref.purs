@@ -10,11 +10,11 @@ module Control.Monad.Eff.Ref where
 import Control.Monad.Eff
 
 -- | The effect associated with the use of global mutable variables.
-foreign import data Ref :: !
+foreign import data REF :: !
 
--- | A value of type `RefVal a` represents a mutable reference
+-- | A value of type `Ref a` represents a mutable reference
 -- | which holds a value of type `a`.
-foreign import data RefVal :: * -> *
+foreign import data Ref :: * -> *
 
 -- | Create a new mutable reference containing the specified value.
 foreign import newRef """
@@ -23,7 +23,7 @@ foreign import newRef """
       return { value: val };
     };
   }
-""" :: forall s r. s -> Eff (ref :: Ref | r) (RefVal s)
+""" :: forall s r. s -> Eff (ref :: REF | r) (Ref s)
 
 -- | Read the current value of a mutable reference
 foreign import readRef """
@@ -32,7 +32,7 @@ foreign import readRef """
       return ref.value;
     };
   }
-""" :: forall s r. RefVal s -> Eff (ref :: Ref | r) s
+""" :: forall s r. Ref s -> Eff (ref :: REF | r) s
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
@@ -41,17 +41,17 @@ foreign import modifyRef' """
     return function(f) {
       return function() {
         var t = f(ref.value);
-        ref.value = t.newState;
-        return t.retVal;
+        ref.value = t.state;
+        return t.value;
       };
     };
   }
-""" :: forall s b r. RefVal s -> (s -> {newState :: s, retVal :: b}) -> Eff (ref :: Ref | r) b
+""" :: forall s b r. Ref s -> (s -> { state :: s, value :: b }) -> Eff (ref :: REF | r) b
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
-modifyRef :: forall s r. RefVal s -> (s -> s) -> Eff (ref :: Ref | r) Unit
-modifyRef ref f = modifyRef' ref (\s -> {newState: f s, retVal: unit})
+modifyRef :: forall s r. Ref s -> (s -> s) -> Eff (ref :: REF | r) Unit
+modifyRef ref f = modifyRef' ref (\s -> { state: f s, value: unit })
 
 -- | Update the value of a mutable reference to the specified value.
 foreign import writeRef """
@@ -63,4 +63,4 @@ foreign import writeRef """
       };
     };
   }
-""" :: forall s r. RefVal s -> s -> Eff (ref :: Ref | r) Unit
+""" :: forall s r. Ref s -> s -> Eff (ref :: REF | r) Unit
