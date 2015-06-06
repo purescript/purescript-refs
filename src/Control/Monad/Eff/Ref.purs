@@ -7,6 +7,8 @@
 
 module Control.Monad.Eff.Ref where
 
+import Prelude
+
 import Control.Monad.Eff (Eff())
 
 -- | The effect associated with the use of global mutable variables.
@@ -17,39 +19,14 @@ foreign import data REF :: !
 foreign import data Ref :: * -> *
 
 -- | Create a new mutable reference containing the specified value.
-foreign import newRef
-  """
-  function newRef(val) {
-    return function () {
-      return { value: val };
-    };
-  }
-  """ :: forall s r. s -> Eff (ref :: REF | r) (Ref s)
+foreign import newRef :: forall s r. s -> Eff (ref :: REF | r) (Ref s)
 
 -- | Read the current value of a mutable reference
-foreign import readRef
-  """
-  function readRef(ref) {
-    return function() {
-      return ref.value;
-    };
-  }
-  """ :: forall s r. Ref s -> Eff (ref :: REF | r) s
+foreign import readRef :: forall s r. Ref s -> Eff (ref :: REF | r) s
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
-foreign import modifyRef'
-  """
-  function modifyRef$prime(ref) {
-    return function(f) {
-      return function() {
-        var t = f(ref.value);
-        ref.value = t.state;
-        return t.value;
-      };
-    };
-  }
-  """ :: forall s b r. Ref s -> (s -> { state :: s, value :: b }) -> Eff (ref :: REF | r) b
+foreign import modifyRef' :: forall s b r. Ref s -> (s -> { state :: s, value :: b }) -> Eff (ref :: REF | r) b
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
@@ -57,14 +34,4 @@ modifyRef :: forall s r. Ref s -> (s -> s) -> Eff (ref :: REF | r) Unit
 modifyRef ref f = modifyRef' ref (\s -> { state: f s, value: unit })
 
 -- | Update the value of a mutable reference to the specified value.
-foreign import writeRef
-  """
-  function writeRef(ref) {
-    return function(val) {
-      return function() {
-        ref.value = val;
-        return {};
-      };
-    };
-  }
-  """ :: forall s r. Ref s -> s -> Eff (ref :: REF | r) Unit
+foreign import writeRef :: forall s r. Ref s -> s -> Eff (ref :: REF | r) Unit
