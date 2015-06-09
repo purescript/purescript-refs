@@ -1,18 +1,27 @@
 {
-  "name": "purescript-semirings",
-  "moduleType": [
-    "node"
+  "name": "purescript-refs",
+  "homepage": "https://github.com/purescript/purescript-refs",
+  "description": "Mutable value references",
+  "keywords": [
+    "purescript"
   ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript/purescript-refs.git"
+  },
   "ignore": [
     "**/.*",
-    "node_modules",
     "bower_components",
+    "node_modules",
     "output",
+    "test",
     "bower.json",
     "gulpfile.js",
     "package.json"
   ],
   "dependencies": {
-    "purescript-eff": "~0.1.0"
+    "purescript-eff": "^0.1.0",
+    "purescript-prelude": "^0.1.0"
   }
 }

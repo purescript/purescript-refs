@@ -1,7 +1,4 @@
-# Module Documentation
-
 ## Module Control.Monad.Eff.Ref
-
 
 This module defines an effect and actions for working with
 global mutable variables.
@@ -46,7 +43,7 @@ Read the current value of a mutable reference
 #### `modifyRef'`
 
 ``` purescript
-modifyRef' :: forall s b r. Ref s -> (s -> { value :: b, state :: s }) -> Eff (ref :: REF | r) b
+modifyRef' :: forall s b r. Ref s -> (s -> { state :: s, value :: b }) -> Eff (ref :: REF | r) b
 ```
 
 Update the value of a mutable reference by applying a function
@@ -68,6 +65,5 @@ writeRef :: forall s r. Ref s -> s -> Eff (ref :: REF | r) Unit
 ```
 
 Update the value of a mutable reference to the specified value.
-
 
 

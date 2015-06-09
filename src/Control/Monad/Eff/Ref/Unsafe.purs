@@ -2,11 +2,8 @@
 
 module Control.Monad.Eff.Ref.Unsafe where
 
-import Prelude
-
 import Control.Monad.Eff (Eff())
 import Control.Monad.Eff.Ref
-
 import Control.Monad.Eff.Unsafe (unsafeInterleaveEff)
 
 -- | This handler function unsafely removes the `Ref` effect from an

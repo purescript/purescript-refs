@@ -4,11 +4,9 @@
 -- | _Note_: The `Control.Monad.ST` provides a _safe_ alternative
 -- | to global mutable variables when mutation is restricted to a
 -- | local scope.
-
 module Control.Monad.Eff.Ref where
 
 import Prelude
-
 import Control.Monad.Eff (Eff())
 
 -- | The effect associated with the use of global mutable variables.
