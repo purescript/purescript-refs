@@ -17,11 +17,9 @@
     "output",
     "test",
     "bower.json",
-    "gulpfile.js",
     "package.json"
   ],
   "dependencies": {
-    "purescript-eff": "^0.1.0",
-    "purescript-prelude": "^0.1.0"
+    "purescript-eff": "^0.1.0"
   }
 }
