@@ -17,19 +17,19 @@ foreign import data REF :: !
 foreign import data Ref :: * -> *
 
 -- | Create a new mutable reference containing the specified value.
-foreign import newRef :: forall s r. s -> Eff (ref :: REF | r) (Ref s)
+foreign import newRef :: forall s r. s -> Eff (write :: REF | r) (Ref s)
 
 -- | Read the current value of a mutable reference
-foreign import readRef :: forall s r. Ref s -> Eff (ref :: REF | r) s
+foreign import readRef :: forall s r. Ref s -> Eff (read :: REF | r) s
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
-foreign import modifyRef' :: forall s b r. Ref s -> (s -> { state :: s, value :: b }) -> Eff (ref :: REF | r) b
+foreign import modifyRef' :: forall s b r. Ref s -> (s -> { state :: s, value :: b }) -> Eff (read :: REF, write :: REF | r) b
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
-modifyRef :: forall s r. Ref s -> (s -> s) -> Eff (ref :: REF | r) Unit
+modifyRef :: forall s r. Ref s -> (s -> s) -> Eff (read :: REF, write :: REF | r) Unit
 modifyRef ref f = modifyRef' ref (\s -> { state: f s, value: unit })
 
 -- | Update the value of a mutable reference to the specified value.
-foreign import writeRef :: forall s r. Ref s -> s -> Eff (ref :: REF | r) Unit
+foreign import writeRef :: forall s r. Ref s -> s -> Eff (write :: REF | r) Unit
