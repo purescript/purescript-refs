@@ -6,7 +6,7 @@
 -- | local scope.
 module Control.Monad.Eff.Ref where
 
-import Prelude
+import Prelude (Unit, unit)
 import Control.Monad.Eff (Eff())
 
 -- | The effect associated with the use of global mutable variables.
