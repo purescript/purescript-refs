@@ -12,7 +12,6 @@ Mutable value references.
 bower install purescript-refs
 ```
 
-## Module documentation
+## Documentation
 
-- [Control.Monad.Eff.Ref](docs/Control/Monad/Eff/Ref.md)
-- [Control.Monad.Eff.Ref.Unsafe](docs/Control/Monad/Eff/Ref.Unsafe.md)
+Module documentation is [published on Pursuit](http://pursuit.purescript.org/packages/purescript-refs).
