@@ -31,12 +31,21 @@ modifyRef' :: forall s b r. Ref s -> (s -> Modified s b) -> Eff (ref :: REF | r)
 modifyRef' ref f = do
   value <- readRef ref
   let mod = f value
-  writeRef ref mod.newValue
+  ref .= mod.newValue
   pure mod.returnValue
+
+-- | An infix version of `modifyRef'`.
+infix 4 modifyRef' as %%=
 
 -- | Update the value of a mutable reference by applying a function to the
 -- | current value.
 foreign import modifyRef :: forall s r. Ref s -> (s -> s) -> Eff (ref :: REF | r) s
 
+-- | An infix version of `modifyRef`.
+infix 4 modifyRef as %=
+
 -- | Update the value of a mutable reference to the specified value.
 foreign import writeRef :: forall s r. Ref s -> s -> Eff (ref :: REF | r) Unit
+
+-- | An infix version of `writeRef`.
+infix 4 writeRef as .=

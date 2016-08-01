@@ -4,7 +4,7 @@ import Prelude
 
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.Ref (REF, Ref, modifyRef, modifyRef', newRef, readRef, writeRef)
+import Control.Monad.Eff.Ref (REF, Ref, newRef, readRef, (%%=), (%=), (.=))
 
 import Test.Assert (ASSERT, assert)
 
@@ -28,14 +28,14 @@ testWriteRef :: EffTestRef
 testWriteRef = do
   log "writeRef"
   ref <- newRef true
-  writeRef ref false
+  ref .= false
   testReadRef ref false
 
 testModifyRef :: EffTestRef
 testModifyRef = do
   log "modifyRef"
   ref <- newRef true
-  val <- modifyRef ref not
+  val <- ref %= not
   assert $ val == false
   testReadRef ref false
 
@@ -43,6 +43,6 @@ testModifyRef' :: EffTestRef
 testModifyRef' = do
   log "modifyRef'"
   ref <- newRef true
-  val <- modifyRef' ref (\old -> { newValue: old, returnValue: not old})
+  val <- ref %%= \old -> { newValue: old, returnValue: not old}
   assert $ val == false
   testReadRef ref true
