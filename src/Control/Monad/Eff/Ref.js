@@ -15,12 +15,11 @@ exports.readRef = function (ref) {
   };
 };
 
-exports["modifyRef'"] = function (ref) {
+exports.modifyRef = function (ref) {
   return function (f) {
     return function () {
-      var t = f(ref.value);
-      ref.value = t.state;
-      return t.value;
+      /* jshint boss: true */
+      return ref.value = f(ref.value);
     };
   };
 };
