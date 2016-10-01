@@ -7,7 +7,7 @@
 module Control.Monad.Eff.Ref where
 
 import Prelude (Unit, unit)
-import Control.Monad.Eff (Eff())
+import Control.Monad.Eff (Eff)
 
 -- | The effect associated with the use of global mutable variables.
 foreign import data REF :: !
