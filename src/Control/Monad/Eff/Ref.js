@@ -1,7 +1,4 @@
-/* global exports */
 "use strict";
-
-// module Control.Monad.Eff.Ref
 
 exports.newRef = function (val) {
   return function () {
