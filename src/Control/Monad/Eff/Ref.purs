@@ -7,14 +7,14 @@
 module Control.Monad.Eff.Ref where
 
 import Prelude (Unit, unit)
-import Control.Monad.Eff (Eff)
+import Control.Monad.Eff (Eff, kind Effect)
 
 -- | The effect associated with the use of global mutable variables.
-foreign import data REF :: !
+foreign import data REF :: Effect
 
 -- | A value of type `Ref a` represents a mutable reference
 -- | which holds a value of type `a`.
-foreign import data Ref :: * -> *
+foreign import data Ref :: Type -> Type
 
 -- | Create a new mutable reference containing the specified value.
 foreign import newRef :: forall s r. s -> Eff (ref :: REF | r) (Ref s)
