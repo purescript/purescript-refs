@@ -4,7 +4,7 @@
 -- | _Note_: The `Control.Monad.ST` provides a _safe_ alternative
 -- | to global mutable variables when mutation is restricted to a
 -- | local scope.
-module Control.Monad.Eff.Ref where
+module Control.Monad.Effect.Ref where
 
 import Control.Monad.Effect (Effect)
 import Prelude (Unit, unit)
