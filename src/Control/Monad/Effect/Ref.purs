@@ -14,19 +14,19 @@ import Prelude (Unit, unit)
 foreign import data Ref :: Type -> Type
 
 -- | Create a new mutable reference containing the specified value.
-foreign import newRef :: forall s r. s -> Effect (Ref s)
+foreign import newRef :: forall s. s -> Effect (Ref s)
 
 -- | Read the current value of a mutable reference
-foreign import readRef :: forall s r. Ref s -> Effect s
+foreign import readRef :: forall s. Ref s -> Effect s
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
-foreign import modifyRef' :: forall s b r. Ref s -> (s -> { state :: s, value :: b }) -> Effect b
+foreign import modifyRef' :: forall s b. Ref s -> (s -> { state :: s, value :: b }) -> Effect b
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
-modifyRef :: forall s r. Ref s -> (s -> s) -> Effect Unit
+modifyRef :: forall s. Ref s -> (s -> s) -> Effect Unit
 modifyRef ref f = modifyRef' ref (\s -> { state: f s, value: unit })
 
 -- | Update the value of a mutable reference to the specified value.
-foreign import writeRef :: forall s r. Ref s -> s -> Effect Unit
+foreign import writeRef :: forall s. Ref s -> s -> Effect Unit
