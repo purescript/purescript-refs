@@ -1,19 +1,19 @@
 "use strict";
 
-exports.newRef = function (val) {
+exports.new = function (val) {
   return function () {
     return { value: val };
   };
 };
 
-exports.readRef = function (ref) {
+exports.read = function (ref) {
   return function () {
     return ref.value;
   };
 };
 
-exports["modifyRef'"] = function (ref) {
-  return function (f) {
+exports["modify'"] = function (f) {
+  return function (ref) {
     return function () {
       var t = f(ref.value);
       ref.value = t.state;
@@ -22,8 +22,8 @@ exports["modifyRef'"] = function (ref) {
   };
 };
 
-exports.writeRef = function (ref) {
-  return function (val) {
+exports.write = function (val) {
+  return function (ref) {
     return function () {
       ref.value = val;
       return {};
