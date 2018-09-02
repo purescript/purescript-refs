@@ -1,9 +1,7 @@
--- | This module defines an effect and actions for working with
--- | global mutable variables.
+-- | This module defines actions for working with mutable value references.
 -- |
--- | _Note_: `Control.Monad.ST` provides a _safe_ alternative
--- | to global mutable variables when mutation is restricted to a
--- | local scope.
+-- | _Note_: `Control.Monad.ST` provides a _safe_ alternative to `Ref` when
+-- | mutation is restricted to a local scope.
 module Effect.Ref where
 
 import Prelude
