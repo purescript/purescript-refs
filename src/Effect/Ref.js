@@ -1,8 +1,10 @@
 "use strict";
 
-exports.new = function (val) {
+exports.self = function (f) {
   return function () {
-    return { value: val };
+    var ref = { value: null };
+    ref.value = f(ref);
+    return ref;
   };
 };
 
