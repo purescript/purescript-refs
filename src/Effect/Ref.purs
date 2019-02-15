@@ -13,8 +13,7 @@ import Effect (Effect)
 foreign import data Ref :: Type -> Type
 
 -- | Create a new mutable reference containing the specified value.
-new :: forall s. s -> Effect (Ref s)
-new s = self (const s)
+foreign import new :: forall s. s -> Effect (Ref s)
 
 -- | Create a new mutable reference containing a value that can refer to the
 -- | `Ref` being created.

@@ -1,5 +1,11 @@
 "use strict";
 
+exports.new = function (val) {
+  return function () {
+    return { value: val };
+  };
+};
+
 exports.self = function (f) {
   return function () {
     var ref = { value: null };
