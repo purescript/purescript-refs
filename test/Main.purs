@@ -16,15 +16,16 @@ main = do
   assertEqual { actual: curr1, expected: 0 }
 
   -- write over the ref with 1
-  Ref.write 1 ref
+  curr2 <- Ref.write 1 ref
+  assertEqual { actual: curr2, expected: 1 }
 
   -- now it is 1 when we read out the value
-  curr2 <- Ref.read ref
-  assertEqual { actual: curr2, expected: 1 }
+  curr3 <- Ref.read ref
+  assertEqual { actual: curr3, expected: 1 }
 
   -- modify it by adding 1 to the current state
   Ref.modify_ (\s -> s + 1) ref
 
   -- now it is 2 when we read out the value
-  curr3 <- Ref.read ref
-  assertEqual { actual: curr3, expected: 2 }
+  curr4 <- Ref.read ref
+  assertEqual { actual: curr4, expected: 2 }

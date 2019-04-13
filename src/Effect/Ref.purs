@@ -27,8 +27,14 @@ foreign import modify' :: forall s b. (s -> { state :: s, value :: b }) -> Ref s
 modify :: forall s. (s -> s) -> Ref s -> Effect s
 modify f = modify' \s -> let s' = f s in { state: s', value: s' }
 
+-- | Equivalent to `modify`, but returns `Unit`.
 modify_ :: forall s. (s -> s) -> Ref s -> Effect Unit
 modify_ f s = void $ modify f s
 
 -- | Update the value of a mutable reference to the specified value.
-foreign import write :: forall s. s -> Ref s -> Effect Unit
+-- | The updated value is returned.
+foreign import write :: forall s. s -> Ref s -> Effect s
+
+-- | Equivalent to `write`, but returns `Unit`.
+write_ :: forall s. s -> Ref s -> Effect Unit
+write_ f s = void $ write f s
