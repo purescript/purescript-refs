@@ -2,7 +2,15 @@
 -- |
 -- | _Note_: `Control.Monad.ST` provides a _safe_ alternative to `Ref` when
 -- | mutation is restricted to a local scope.
-module Effect.Ref where
+module Effect.Ref
+  ( Ref
+  , new
+  , read
+  , modify'
+  , modify
+  , modify_
+  , write
+  ) where
 
 import Prelude
 
@@ -20,7 +28,10 @@ foreign import read :: forall s. Ref s -> Effect s
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value.
-foreign import modify' :: forall s b. (s -> { state :: s, value :: b }) -> Ref s -> Effect b
+modify' :: forall s b. (s -> { state :: s, value :: b }) -> Ref s -> Effect b
+modify' = modifyImpl
+
+foreign import modifyImpl :: forall s b. (s -> { state :: s, value :: b }) -> Ref s -> Effect b
 
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value. The updated value is returned.
