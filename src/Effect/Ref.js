@@ -26,7 +26,6 @@ exports.write = function (val) {
   return function (ref) {
     return function () {
       ref.value = val;
-      return {};
     };
   };
 };
