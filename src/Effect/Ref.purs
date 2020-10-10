@@ -2,6 +2,38 @@
 -- |
 -- | _Note_: `Control.Monad.ST` provides a _safe_ alternative to `Ref` when
 -- | mutation is restricted to a local scope.
+-- |
+-- | You'll notice that all of the functions that operate on a `Ref`
+-- | (e.g. `new`, `modify`, `modify_`, `read`) return an `Effect (Ref s)`
+-- | and not a `Ref s`. Here's what would happe if the `Ref s` was not
+-- | wrapped in an `Effect`:
+-- | 1. In some situations, one could violate referential transparency.
+-- | 2. One can violate the type system by giving a `Ref` a polymorphic type
+-- |    and then specializing it after the fact.
+-- |
+-- | In regards to the first, consider the below example:
+-- | ```
+-- | let
+-- |   x = Ref.new “hi”
+-- |   first = Tuple x x
+-- |   second = Tuple (Ref.new "hi") (Ref.new "hi")
+-- | ```
+-- | In the above code, `first` would be the same as `second` if it upheld
+-- | referential transparency. However, `first` holds the same reference twice
+-- | whereas `second` holds two different references. Thus, it invalidates
+-- | referential transparency. By making `Ref.new` return an `Effect`, a
+-- | new separate reference is created each time.
+-- |
+-- | In regards to the second, consider the below example:
+-- | ```
+-- | let
+-- |   ref :: forall a. Ref (Maybe a)
+-- |   ref = Ref.new Nothing
+-- | in
+-- |   Tuple (ref :: Ref (Maybe Int)) (ref :: Ref (Maybe String))
+-- | ```
+-- | The Tuple stores the same reference twice, but its type is `Maybe Int` in
+-- | one situation and `Maybe String` in another.
 module Effect.Ref
   ( Ref
   , new
