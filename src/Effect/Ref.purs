@@ -20,6 +20,8 @@ import Effect (Effect)
 -- | which holds a value of type `a`.
 foreign import data Ref :: Type -> Type
 
+type role Ref representational
+
 -- | Create a new mutable reference containing the specified value.
 foreign import new :: forall s. s -> Effect (Ref s)
 
