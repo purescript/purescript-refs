@@ -18,12 +18,13 @@
 -- |   first = Tuple x x
 -- |   second = Tuple (Ref.new "hi") (Ref.new "hi")
 -- | ```
--- | In the above code, `first` would be the same as `second` if it upheld
--- | referential transparency. However, `first` holds the same reference twice
--- | whereas `second` holds two different references. Thus, it invalidates
--- | referential transparency. By making `Ref.new` return an `Effect`, we
--- | return an _action_. Each time this action is called, it will create a new
--- | separate reference that is initialized to the given value.
+-- | In the above code, `first` holds the same reference twice whereas `second`
+-- | holds two different references. Thus, it invalidates referential
+-- | transparency. If `first` was referentially transparent to `second`,
+-- | then `first` would hold two separate references just like `second`.
+-- | By making `Ref.new` return an `Effect`, we return an _action_. Each time
+-- | this action is called, it will create a new separate reference that is
+-- | initialized to the given value.
 -- |
 -- | In regards to the second, consider the below example:
 -- | ```
