@@ -5,7 +5,7 @@
 -- |
 -- | You'll notice that all of the functions that operate on a `Ref`
 -- | (e.g. `new`, `modify`, `modify_`, `read`) return an `Effect (Ref s)`
--- | and not a `Ref s`. Here's what would happe if the `Ref s` was not
+-- | and not a `Ref s`. Here's what would happen if the `Ref s` was not
 -- | wrapped in an `Effect`:
 -- | 1. In some situations, one could violate referential transparency.
 -- | 2. One can violate the type system by giving a `Ref` a polymorphic type
