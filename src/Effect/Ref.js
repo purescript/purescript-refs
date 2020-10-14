@@ -20,7 +20,7 @@ exports.read = function (ref) {
   };
 };
 
-exports["modify'"] = function (f) {
+exports.modifyImpl = function (f) {
   return function (ref) {
     return function () {
       var t = f(ref.value);
@@ -34,7 +34,6 @@ exports.write = function (val) {
   return function (ref) {
     return function () {
       ref.value = val;
-      return {};
     };
   };
 };

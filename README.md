@@ -16,6 +16,8 @@ bower install purescript-refs
 ## Example
 
 ```purs
+import Effect.Ref as Ref
+
 main = do
   -- initialize a new Ref with the value 0
   ref <- Ref.new 0
