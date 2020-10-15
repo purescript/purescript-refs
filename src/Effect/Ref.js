@@ -6,7 +6,7 @@ exports.new = function (val) {
   };
 };
 
-exports.newSelf = function (f) {
+exports.newWithSelf = function (f) {
   return function () {
     var ref = { value: null };
     ref.value = f(ref);

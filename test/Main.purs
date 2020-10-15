@@ -36,7 +36,7 @@ newtype RefBox = RefBox { ref :: Ref.Ref RefBox, value :: Int }
 selfRef :: Effect Unit
 selfRef = do
   -- Create a self-referential `Ref`
-  ref <- Ref.self \ref -> RefBox { ref, value: 0 }
+  ref <- Ref.newWithSelf \ref -> RefBox { ref, value: 0 }
 
   -- Grab the `Ref` from within the `Ref`
   ref' <- Ref.read ref <#> \(RefBox r) -> r.ref
