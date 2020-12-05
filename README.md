@@ -1,7 +1,7 @@
 # purescript-refs
 
 [![Latest release](http://img.shields.io/github/release/purescript/purescript-refs.svg)](https://github.com/purescript/purescript-refs/releases)
-[![Build status](https://travis-ci.org/purescript/purescript-refs.svg?branch=master)](https://travis-ci.org/purescript/purescript-refs)
+[![Build status](https://github.com/purescript/purescript-refs/workflows/CI/badge.svg?branch=master)](https://github.com/purescript/purescript-refs/actions?query=workflow%3ACI+branch%3Amaster)
 
 This module defines functions for working with mutable value references.
 
@@ -10,7 +10,7 @@ _Note_: [`Control.Monad.ST`](https://pursuit.purescript.org/packages/purescript-
 ## Installation
 
 ```
-bower install purescript-refs
+spago install refs
 ```
 
 ## Example
