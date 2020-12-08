@@ -2,6 +2,7 @@
 
 [![Latest release](http://img.shields.io/github/release/purescript/purescript-refs.svg)](https://github.com/purescript/purescript-refs/releases)
 [![Build status](https://github.com/purescript/purescript-refs/workflows/CI/badge.svg?branch=master)](https://github.com/purescript/purescript-refs/actions?query=workflow%3ACI+branch%3Amaster)
+[![Pursuit](https://pursuit.purescript.org/packages/purescript-refs/badge)](https://pursuit.purescript.org/packages/purescript-refs)
 
 This module defines functions for working with mutable value references.
 
