@@ -6,6 +6,14 @@ exports.new = function (val) {
   };
 };
 
+exports.newWithSelf = function (f) {
+  return function () {
+    var ref = { value: null };
+    ref.value = f(ref);
+    return ref;
+  };
+};
+
 exports.read = function (ref) {
   return function () {
     return ref.value;
