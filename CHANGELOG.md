@@ -5,12 +5,20 @@ Notable changes to this project are documented in this file. The format is based
 ## [Unreleased]
 
 Breaking changes:
+- Added support for PureScript 0.14 and dropped support for all previous versions (#29)
 
 New features:
+- Allow the construction of self-referential `Ref`s (#21)
+- Add roles declarations to allow safe coercions (#29)
 
 Bugfixes:
 
 Other improvements:
+- Add some examples and tests and update documentation (#19, #20, #31)
+- Remove primes from foreign module exports in preparation for ES modules (#24)
+- Remove `return {}` from FFI implementations for a small performance boost (#27) 
+- Migrated CI to GitHub Actions and updated installation instructions to use Spago (#33)
+- Added a changelog and pull request template (#34, #35)
 
 ## [v4.1.0](https://github.com/purescript/purescript-refs/releases/tag/v4.1.0) - 2018-05-26
 
@@ -36,25 +44,21 @@ This release is intended for the PureScript 0.9.1 compiler and newer.
 
 **Note**: The v1.0.0 tag is not meant to indicate the library is “finished”, the core libraries are all being bumped to this for the 0.9 compiler release so as to use semver more correctly.
 
-## [v1.0.0-rc.1](https://github.com/purescript/purescript-refs/releases/tag/v1.0.0-rc.1) - 2016-03-17
-
-- Release candidate for the psc 0.8+ core libraries
-
 ## [v0.2.0](https://github.com/purescript/purescript-refs/releases/tag/v0.2.0) - 2015-06-30
 
-This release works with versions 0.7.\* of the PureScript compiler. It will not work with older versions. If you are using an older version, you should require an older, compatible version of this library.
+- This release works with versions 0.7.\* of the PureScript compiler. It will not work with older versions. If you are using an older version, you should require an older, compatible version of this library.
 
 ## [v0.2.0-rc.1](https://github.com/purescript/purescript-refs/releases/tag/v0.2.0-rc.1) - 2015-06-09
 
-Initial release candidate of the library intended for the 0.7 compiler.
+- Initial release candidate of the library intended for the 0.7 compiler.
 
 ## [v0.1.3](https://github.com/purescript/purescript-refs/releases/tag/v0.1.3) - 2015-03-19
 
-Updated docs
+- Updated docs
 
 ## [v0.1.2](https://github.com/purescript/purescript-refs/releases/tag/v0.1.2) - 2014-11-24
 
-
+- Added `modifyRef` that returns a pure value (#2)
 
 ## [v0.1.1](https://github.com/purescript/purescript-refs/releases/tag/v0.1.1) - 2014-06-14
 
@@ -62,5 +66,4 @@ Updated docs
 
 ## [v0.1.0](https://github.com/purescript/purescript-refs/releases/tag/v0.1.0) - 2014-04-25
 
-
-
+- Initial release
