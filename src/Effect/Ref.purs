@@ -41,7 +41,10 @@ foreign import data Ref :: Type -> Type
 type role Ref representational
 
 -- | Create a new mutable reference containing the specified value.
-foreign import new :: forall s. s -> Effect (Ref s)
+foreign import _new :: forall s. s -> Effect (Ref s)
+
+new :: forall s. s -> Effect (Ref s)
+new = _new
 
 -- | Create a new mutable reference containing a value that can refer to the
 -- | `Ref` being created.

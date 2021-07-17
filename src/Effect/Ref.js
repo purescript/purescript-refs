@@ -1,12 +1,12 @@
 "use strict";
 
-exports.new = function (val) {
+export var _new = function (val) {
   return function () {
     return { value: val };
   };
 };
 
-exports.newWithSelf = function (f) {
+export var newWithSelf = function (f) {
   return function () {
     var ref = { value: null };
     ref.value = f(ref);
@@ -14,13 +14,13 @@ exports.newWithSelf = function (f) {
   };
 };
 
-exports.read = function (ref) {
+export var read = function (ref) {
   return function () {
     return ref.value;
   };
 };
 
-exports.modifyImpl = function (f) {
+export var modifyImpl = function (f) {
   return function (ref) {
     return function () {
       var t = f(ref.value);
@@ -30,7 +30,7 @@ exports.modifyImpl = function (f) {
   };
 };
 
-exports.write = function (val) {
+export var write = function (val) {
   return function (ref) {
     return function () {
       ref.value = val;
