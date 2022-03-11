@@ -1,5 +1,3 @@
-"use strict";
-
 export const _new = function (val) {
   return function () {
     return { value: val };
