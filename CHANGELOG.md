@@ -17,6 +17,7 @@ Other improvements:
 ## [v6.0.0](https://github.com/purescript/purescript-refs/releases/tag/v6.0.0) - 2022-04-27
 
 Breaking changes:
+
 - Migrate FFI to ES modules (#39 by @kl0tl and @JordanMartinez)
 
 New features:
@@ -28,18 +29,21 @@ Other improvements:
 ## [v5.0.0](https://github.com/purescript/purescript-refs/releases/tag/v5.0.0) - 2021-02-26
 
 Breaking changes:
+
 - Added support for PureScript 0.14 and dropped support for all previous versions (#29)
 
 New features:
+
 - Allow the construction of self-referential `Ref`s (#21)
 - Add roles declarations to allow safe coercions (#29)
 
 Bugfixes:
 
 Other improvements:
+
 - Add some examples and tests and update documentation (#19, #20, #31)
 - Remove primes from foreign module exports in preparation for ES modules (#24)
-- Remove `return {}` from FFI implementations for a small performance boost (#27) 
+- Remove `return {}` from FFI implementations for a small performance boost (#27)
 - Migrated CI to GitHub Actions and updated installation instructions to use Spago (#33)
 - Added a changelog and pull request template (#34, #35)
 
