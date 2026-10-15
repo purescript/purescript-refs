@@ -1,5 +1,6 @@
 package:
   name: refs
+  description: Functions for creating, reading, and updating mutable references
   build:
     strict: true
     pedanticPackages: true
