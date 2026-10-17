@@ -43,12 +43,10 @@ selfRef = do
 
   -- Modify the `ref` and check that value in `ref'` changes
   Ref.modify_ (\(RefBox r) -> RefBox (r { value = 1 })) ref
-  assertEqual
-    <<< { expected: 1, actual: _ }
-    =<< (Ref.read ref' <#> \(RefBox { value }) -> value)
+  value1 <- Ref.read ref' <#> \(RefBox { value }) -> value
+  assertEqual { expected: 1, actual: value1 }
 
   -- Modify the `ref'` and check that value in `ref` changes
   Ref.modify_ (\(RefBox r) -> RefBox (r { value = 2 })) ref'
-  assertEqual
-    <<< { expected: 2, actual: _ }
-    =<< (Ref.read ref <#> \(RefBox { value }) -> value)
+  value2 <- Ref.read ref <#> \(RefBox { value }) -> value
+  assertEqual { expected: 2, actual: value2 }

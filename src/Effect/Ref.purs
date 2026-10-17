@@ -63,7 +63,9 @@ foreign import modifyImpl :: forall s b. (s -> { state :: s, value :: b }) -> Re
 -- | Update the value of a mutable reference by applying a function
 -- | to the current value. The updated value is returned.
 modify :: forall s. (s -> s) -> Ref s -> Effect s
-modify f = modify' \s -> let s' = f s in { state: s', value: s' }
+modify f = modify' \s -> do
+  let s' = f s
+  { state: s', value: s' }
 
 -- | A version of `modify` which does not return the updated value.
 modify_ :: forall s. (s -> s) -> Ref s -> Effect Unit
